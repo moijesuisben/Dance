@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Socket</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.6/dat.gui.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+  ​
+  <script>
+    var socket = io();
+  </script>
+  ​
+  <script>
+
+    var GuiTest = function () {
+      this.speed = 0.8;
+    }
+
+    $(document).ready(function () {
+
+      var gui_param = new GuiTest();
+
+      var gui = new dat.gui.GUI();
+      var speed_controller = gui.add(gui_param, 'speed', -5, 5);
+
+      speed_controller.onChange(function (value) {
+        socket.emit('speed', value);
+      });
+
+    });
+
+  </script>
+  ​
+</head>
+
+<body>
+
+</body>
+
+</html>
